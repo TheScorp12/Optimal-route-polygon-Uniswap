@@ -14,7 +14,7 @@ const ERC20ABI = require("../abi.json");
 const WALLET_ADDRESS = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 const WALLET_SECRET = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 //for polygon local fork
-const Provider = new ethers.JsonRpcProvider(
+const Provider = new ethers.providers.JsonRpcProvider(
   "http://127.0.0.1:8545/"
 );
 const chainId = 137; //for polygon
@@ -56,7 +56,8 @@ async function main() {
     const contract1 = new ethers.Contract(addressUSDT,ERC20ABI, Provider)
     const balanceUSDT = await contract1.connect(connectedWallet).balanceOf(WALLET_ADDRESS);
     var USDTbalance = ethers.utils.formatUnits(balanceUSDT,6)
-    console.log(`balance of USDC is: ${USDTbalance}`);
+    console.log(`balance of USDT is: ${USDTbalance}`);
+    
     const contract0 = new ethers.Contract(addressUSDC, ERC20ABI, Provider);
     const balanceUSDC = await contract0.connect(connectedWallet).balanceOf(WALLET_ADDRESS);
     var USDCbalance = ethers.utils.formatUnits(balanceUSDC,6)

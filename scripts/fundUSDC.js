@@ -1,12 +1,12 @@
-const { network, ethers } = require("hardhat");
+const { network} = require("hardhat");
 const hre = require("hardhat")
 
 const fundErc20 = async (contract, sender, recepient, amount, decimals) => {
-  const FUND_AMOUNT = ethers.parseUnits(amount, decimals);
+  const FUND_AMOUNT = hre.ethers.utils.parseUnits(amount, decimals);
   // fund erc20 token to the address
-  const whale = await ethers.getImpersonatedSigner(sender);
+  const whale = await hre.ethers.getImpersonatedSigner(sender);
   const ERC20ABI = require('../abi.json')
-  const contract0 = new ethers.Contract(contract, ERC20ABI, whale)
+  const contract0 = new hre.ethers.Contract(contract, ERC20ABI, whale)
   const res = await contract0.connect(whale).transfer(recepient, FUND_AMOUNT);
   console.log(res)
 };
