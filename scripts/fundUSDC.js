@@ -8,7 +8,6 @@ const fundErc20 = async (contract, sender, recepient, amount, decimals) => {
   const ERC20ABI = require('../abi.json')
   const contract0 = new hre.ethers.Contract(contract, ERC20ABI, whale)
   const res = await contract0.connect(whale).transfer(recepient, FUND_AMOUNT);
-  console.log(res)
 };
 
 const impersonateFundErc20 = async (
